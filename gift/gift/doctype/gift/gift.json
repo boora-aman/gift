@@ -1,0 +1,238 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": ".#######",
+ "creation": "2025-09-18 18:12:06.876580",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "gift_name",
+  "gift_id",
+  "description",
+  "breed",
+  "column_break_zjty",
+  "category",
+  "status",
+  "gender",
+  "farm_name",
+  "weight",
+  "import_barcode",
+  "barcode",
+  "barcode_value",
+  "section_break_myld",
+  "gift_images",
+  "section_break_mnow",
+  "gift_additional_attributes",
+  "issue_details_tab",
+  "owner_details_section",
+  "gift_recipient",
+  "owner_full_name",
+  "column_break_owner",
+  "coordinator_full_name",
+  "personal_details_section",
+  "mobile_number",
+  "emirates_id",
+  "column_break_personal",
+  "address",
+  "issued_date",
+  "person_photo"
+ ],
+ "fields": [
+  {
+   "fieldname": "gift_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Gift Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "gift_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Gift Code"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "column_break_zjty",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Category",
+   "options": "Gift Category"
+  },
+  {
+   "default": "Available",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nAvailable\nIssued"
+  },
+  {
+   "fieldname": "farm_name",
+   "fieldtype": "Data",
+   "label": "Farm Name"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight",
+   "precision": "2"
+  },
+  {
+   "fieldname": "barcode",
+   "fieldtype": "Attach",
+   "label": "Barcode",
+   "read_only": 1
+  },
+  {
+   "fieldname": "barcode_value",
+   "fieldtype": "Data",
+   "label": "Barcode ID"
+  },
+  {
+   "fieldname": "section_break_myld",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "gift_images",
+   "fieldtype": "Table",
+   "label": "Gift Images",
+   "options": "Gift Images"
+  },
+  {
+   "fieldname": "section_break_mnow",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "gift_additional_attributes",
+   "fieldtype": "Table",
+   "label": "Gift Additional Attributes",
+   "options": "Gift Additional Attributes"
+  },
+  {
+   "depends_on": "eval:doc.status == \"Issued\"",
+   "fieldname": "issue_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Issue Details"
+  },
+  {
+   "depends_on": "eval:doc.status == \"Issued\"",
+   "fieldname": "owner_details_section",
+   "fieldtype": "Section Break",
+   "label": "Owner Details"
+  },
+  {
+   "fieldname": "gift_recipient",
+   "fieldtype": "Link",
+   "label": "Gift Recipient",
+   "options": "Gift Recipient",
+   "read_only": 1
+  },
+  {
+   "fieldname": "owner_full_name",
+   "fieldtype": "Data",
+   "label": "Owner Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_owner",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "coordinator_full_name",
+   "fieldtype": "Data",
+   "label": "Coordinator Full Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.status == \"Issued\"",
+   "fieldname": "personal_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Details"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "label": "Mobile Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "emirates_id",
+   "fieldtype": "Data",
+   "label": "Emirates ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_personal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issued_date",
+   "fieldtype": "Date",
+   "label": "Issued Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "person_photo",
+   "fieldtype": "Attach",
+   "label": "Person Photo",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "import_barcode",
+   "fieldtype": "Check",
+   "label": "Import Barcode"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale"
+  },
+  {
+   "fieldname": "breed",
+   "fieldtype": "Data",
+   "label": "Breed"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-22 22:09:05.914728",
+ "modified_by": "nilesh@nesscale.com",
+ "module": "Gift",
+ "name": "Gift",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
