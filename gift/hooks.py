@@ -88,7 +88,7 @@ fixtures = [
     {
         "doctype": "DocPerm",
         "filters": {
-            "parent": ["in", ["Warehouse"]],
+            "parent": ["in", "Warehouse"],
             "role": ["in", ["Event Manager"]]
         }
     }
