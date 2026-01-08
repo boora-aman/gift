@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "format:GIFT-INT-{#####}",
- "creation": "2025-09-21 15:00:00.000000",
+ "creation": "2025-09-21 15:00:00",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -20,7 +20,12 @@
   "mobile_number",
   "emirates_id",
   "column_break_contact",
-  "address"
+  "address",
+  "interest_source",
+  "event",
+  "interest_level",
+  "remarks",
+  "follow_up_status"
  ],
  "fields": [
   {
@@ -55,12 +60,12 @@
    "reqd": 1
   },
   {
+   "fetch_from": "gift_recipient.owner_full_name",
+   "fetch_if_empty": 1,
    "fieldname": "owner_full_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Owner Full Name",
-   "fetch_from": "gift_recipient.owner_full_name",
-   "fetch_if_empty": 1,
    "reqd": 1
   },
   {
@@ -68,11 +73,11 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "gift_recipient.coordinator_full_name",
+   "fetch_if_empty": 1,
    "fieldname": "coordinator_full_name",
    "fieldtype": "Data",
    "label": "Coordinator Full Name",
-   "fetch_from": "gift_recipient.coordinator_full_name",
-   "fetch_if_empty": 1,
    "reqd": 1
   },
   {
@@ -81,30 +86,30 @@
    "label": "Contact Details"
   },
   {
+   "fetch_from": "gift_recipient.coordinator_mobile_no",
+   "fetch_if_empty": 1,
    "fieldname": "mobile_number",
    "fieldtype": "Data",
    "label": "Mobile Number",
-   "fetch_from": "gift_recipient.coordinator_mobile_no",
-   "fetch_if_empty": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "gift_recipient.coordinator_emirates_id",
+   "fetch_if_empty": 1,
    "fieldname": "emirates_id",
    "fieldtype": "Data",
-   "label": "Emirates ID",
-   "fetch_from": "gift_recipient.coordinator_emirates_id",
-   "fetch_if_empty": 1
+   "label": "Emirates ID"
   },
   {
    "fieldname": "column_break_contact",
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "gift_recipient.address",
+   "fetch_if_empty": 1,
    "fieldname": "address",
    "fieldtype": "Small Text",
-   "label": "Address",
-   "fetch_from": "gift_recipient.address",
-   "fetch_if_empty": 1
+   "label": "Address"
   },
   {
    "fetch_from": "gift.gift_name",
@@ -119,12 +124,44 @@
    "fieldname": "category",
    "fieldtype": "Read Only",
    "label": "Category"
+  },
+  {
+   "default": "Manual Entry",
+   "fieldname": "interest_source",
+   "fieldtype": "Select",
+   "label": "Interest Source",
+   "options": "QR Code Scan\nManual Entry\nEvent Registration\nWebsite\nPhone Call\nOther"
+  },
+  {
+   "fieldname": "event",
+   "fieldtype": "Link",
+   "label": "Event",
+   "options": "Event"
+  },
+  {
+   "default": "Interested",
+   "fieldname": "interest_level",
+   "fieldtype": "Select",
+   "label": "Interest Level",
+   "options": "Very Interested\nInterested\nJust Browsing\nReserved"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Text",
+   "label": "Remarks"
+  },
+  {
+   "default": "New",
+   "fieldname": "follow_up_status",
+   "fieldtype": "Select",
+   "label": "Follow-up Status",
+   "options": "New\nContacted\nConverted to Issue\nNot Interested\nLost"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-21 15:00:00.000000",
+ "modified": "2026-01-03 13:49:15.489913",
  "modified_by": "Administrator",
  "module": "Gift",
  "name": "Gift Interest",
@@ -140,6 +177,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Event Manager",
    "share": 1,
    "write": 1
   }

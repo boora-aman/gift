@@ -1,0 +1,348 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:RCPT-{#####}",
+ "creation": "2025-12-18 15:14:27.477446",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "receipt_info",
+  "receipt_date",
+  "receipt_status",
+  "col_break_1",
+  "received_from",
+  "received_by",
+  "source_info",
+  "source_location",
+  "source_contact",
+  "col_break_2",
+  "transport_method",
+  "transport_company",
+  "gift_section",
+  "create_new_gift",
+  "gift",
+  "new_gift_section",
+  "gift_name",
+  "gift_id",
+  "col_break_3",
+  "category",
+  "barcode_value",
+  "description",
+  "gift_details",
+  "gift_images",
+  "condition_section",
+  "item_condition",
+  "health_status",
+  "col_break_4",
+  "inspection_date",
+  "inspected_by",
+  "inspection_notes",
+  "storage_section",
+  "assign_to_warehouse",
+  "storage_location",
+  "col_break_5",
+  "current_location_type",
+  "storage_date",
+  "documents_section",
+  "health_certificate",
+  "transport_documents",
+  "col_break_6",
+  "purchase_invoice",
+  "other_documents",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Now",
+   "fieldname": "receipt_date",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Receipt Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "received_from",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Received From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "received_by",
+   "fieldtype": "Link",
+   "label": "Received By",
+   "options": "User"
+  },
+  {
+   "default": "Pending Inspection",
+   "fieldname": "receipt_status",
+   "fieldtype": "Select",
+   "label": "Receipt Status",
+   "options": "Pending Inspection\nApproved\nQuarantine\nRejected"
+  },
+  {
+   "fieldname": "source_location",
+   "fieldtype": "Small Text",
+   "label": "Source Location"
+  },
+  {
+   "fieldname": "source_contact",
+   "fieldtype": "Data",
+   "label": "Source Contact"
+  },
+  {
+   "fieldname": "gift_section",
+   "fieldtype": "Section Break",
+   "label": "Gift Details"
+  },
+  {
+   "default": "1",
+   "fieldname": "create_new_gift",
+   "fieldtype": "Check",
+   "label": "Create New Gift"
+  },
+  {
+   "depends_on": "eval:doc.create_new_gift==0",
+   "fieldname": "gift",
+   "fieldtype": "Link",
+   "label": "Link to Existing Gift",
+   "options": "Gift"
+  },
+  {
+   "fieldname": "gift_name",
+   "fieldtype": "Data",
+   "label": "Gift Name",
+   "mandatory_depends_on": "eval:doc.create_new_gift==1"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Category",
+   "options": "Gift Category"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "condition_section",
+   "fieldtype": "Section Break",
+   "label": "Condition Assessment"
+  },
+  {
+   "fieldname": "item_condition",
+   "fieldtype": "Select",
+   "label": "Item Condition",
+   "options": "\nNew\nExcellent\nGood\nFair\nNeeds Repair\nLiving (Healthy)\nLiving (Sick)\nLiving (Needs Doctor)"
+  },
+  {
+   "depends_on": "eval:doc.item_condition && doc.item_condition.includes(\"Living\")",
+   "fieldname": "health_status",
+   "fieldtype": "Select",
+   "label": "Health Status",
+   "options": "\nHealthy\nNeeds Checkup\nUnder Treatment\nRecovering\nCritical\nQuarantine"
+  },
+  {
+   "fieldname": "inspection_notes",
+   "fieldtype": "Text",
+   "label": "Inspection Notes"
+  },
+  {
+   "fieldname": "storage_section",
+   "fieldtype": "Section Break",
+   "label": "Storage Assignment"
+  },
+  {
+   "fieldname": "assign_to_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assign to Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "storage_location",
+   "fieldtype": "Data",
+   "label": "Storage Location/Section"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "documents_section",
+   "fieldtype": "Section Break",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "health_certificate",
+   "fieldtype": "Attach",
+   "label": "Health Certificate"
+  },
+  {
+   "fieldname": "transport_documents",
+   "fieldtype": "Attach",
+   "label": "Transport Documents"
+  },
+  {
+   "fieldname": "purchase_invoice",
+   "fieldtype": "Attach",
+   "label": "Purchase Invoice"
+  },
+  {
+   "fieldname": "other_documents",
+   "fieldtype": "Attach",
+   "label": "Other Documents"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Gift Receipt",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transport_method",
+   "fieldtype": "Select",
+   "label": "Transport Method",
+   "options": "\nRoad\nAir\nSea\nHand Delivery\nOther"
+  },
+  {
+   "fieldname": "transport_company",
+   "fieldtype": "Data",
+   "label": "Transport Company"
+  },
+  {
+   "fieldname": "gift_id",
+   "fieldtype": "Data",
+   "label": "Gift Code"
+  },
+  {
+   "fieldname": "barcode_value",
+   "fieldtype": "Data",
+   "label": "Barcode ID"
+  },
+  {
+   "depends_on": "eval:doc.create_new_gift==1",
+   "fieldname": "gift_details",
+   "fieldtype": "Table",
+   "label": "Gift Attributes",
+   "options": "Gift Details"
+  },
+  {
+   "fieldname": "inspection_date",
+   "fieldtype": "Datetime",
+   "label": "Inspection Date"
+  },
+  {
+   "fieldname": "inspected_by",
+   "fieldtype": "Link",
+   "label": "Inspected By",
+   "options": "User"
+  },
+  {
+   "default": "Today",
+   "fieldname": "storage_date",
+   "fieldtype": "Date",
+   "label": "Stored Since"
+  },
+  {
+   "default": "Warehouse",
+   "fieldname": "current_location_type",
+   "fieldtype": "Select",
+   "label": "Location Type",
+   "options": "Warehouse\nFarm\nEvent\nIn Transit\nWith Recipient\nMaintenance Center\nOther"
+  },
+  {
+   "depends_on": "eval:doc.create_new_gift==1",
+   "fieldname": "gift_images",
+   "fieldtype": "Table",
+   "label": "Gift Images",
+   "options": "Gift Images"
+  },
+  {
+   "fieldname": "receipt_info",
+   "fieldtype": "Section Break",
+   "label": "Receipt Information"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "source_info",
+   "fieldtype": "Section Break",
+   "label": "Source Information"
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.create_new_gift==1",
+   "fieldname": "new_gift_section",
+   "fieldtype": "Section Break",
+   "label": "New Gift Information"
+  },
+  {
+   "fieldname": "col_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "col_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "col_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "col_break_6",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-01-06 11:16:28.338624",
+ "modified_by": "Administrator",
+ "module": "Gift",
+ "name": "Gift Receipt",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Event Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

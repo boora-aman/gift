@@ -2,9 +2,9 @@ from . import __version__ as app_version
 
 app_name = "gift"
 app_title = "Gift"
-app_publisher = "Your Company"
+app_publisher = "Aman Boora"
 app_description = "Gift Management System"
-app_email = "your.email@company.com"
+app_email = "800raaman@gmail.com"
 app_license = "MIT"
 
 # Includes in <head>
@@ -33,9 +33,66 @@ app_license = "MIT"
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+def post_install():
+    """Auto build gift-keeper frontend"""
+    import frappe
+    import os
+    from frappe.utils import execute_in_shell
+    
+    app_root = frappe.get_app_path("gift")
+    frontend_path = os.path.join(app_root, "gift-keeper")
+    
+    if os.path.exists(frontend_path):
+        frappe.print("🚀 Building Gift Management Frontend...")
+        
+        # Install deps
+        frappe.print("📦 npm ci...")
+        execute_in_shell(f"cd {frontend_path} && npm ci", check=False)
+        
+        # Build production
+        frappe.print("🔨 npm run build...")
+        result = execute_in_shell(f"cd {frontend_path} && npm run build", check=True)
+        
+        # Verify build output
+        public_dist = os.path.join(app_root, "gift", "public", "dist")
+        if os.path.exists(public_dist):
+            frappe.print("✅ Frontend built and copied to /assets/gift/dist/")
+        else:
+            frappe.print("❌ Build failed - check logs")
+        
+        # Rebuild Frappe assets
+        frappe.print("⚡ bench build...")
+        frappe.utils.execute_in_shell("bench build --force")
+        
+        frappe.print("✅ Gift Management ready at /gift")
+
+# SPA Routes
+website_route_rules = {
+    "/gift": "gift.www.gift",
+    "/gift/*": "gift.www.gift"
+}
+
+website_context = {
+    "favicon": "/assets/gift/images/favicon.ico"
+}
 
 # Home Pages
 # ----------
+fixtures = [
+    {
+        "doctype": "Role",
+        "filters": {
+            "name": ["in", ["Event Manager"]]
+        }
+    },
+    {
+        "doctype": "DocPerm",
+        "filters": {
+            "parent": ["in", ["Warehouse"]],
+            "role": ["in", ["Event Manager"]]
+        }
+    }
+]
 
 # application home page (will override Website Settings)
 # home_page = "login"
@@ -102,12 +159,6 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-doc_events = {
-    "Gift": {
-        "before_insert": "gift.api.generate_gift_code",
-        "validate": "gift.api.validate_gift",
-    }
-}
 
 # Scheduled Tasks
 # ---------------
@@ -432,5 +483,5 @@ doc_events = {
 
 website_route_rules = [
     {"from_route": "/gift/<path:app_path>", "to_route": "gift"},
-    {"from_route": "/<path:app_path>", "to_route": "gift"},
+    # {"from_route": "/<path:app_path>", "to_route": "gift"},
 ]

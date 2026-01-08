@@ -3477,3 +3477,30 @@ def get_current_user_role():
             title="User API - Get Current User Role Error",
         )
         frappe.throw(_("Failed to fetch current user role: {0}").format(str(e)))
+
+
+@frappe.whitelist()
+def get_field_options(doctype, fieldname):
+    """
+    Get select options for a DocType field
+    Uses get_meta which doesn't require DocField read permission
+    """
+    try:
+        # Get field metadata - this bypasses DocField permission
+        meta = frappe.get_meta(doctype)
+        field = meta.get_field(fieldname)
+        
+        if not field:
+            return []
+        
+        if field.fieldtype == "Select" and field.options:
+            # Split options by newline and filter empty strings
+            options = [opt.strip() for opt in field.options.split('\n') if opt.strip()]
+            return options
+        
+        return []
+        
+    except Exception as e:
+        frappe.log_error(f"Error in get_field_options: {str(e)}", "Field Options API Error")
+        return []
+

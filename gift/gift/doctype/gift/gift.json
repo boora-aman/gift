@@ -9,20 +9,16 @@
   "gift_name",
   "gift_id",
   "description",
-  "breed",
   "column_break_zjty",
   "category",
   "status",
-  "gender",
-  "farm_name",
-  "weight",
   "import_barcode",
   "barcode",
   "barcode_value",
+  "section_break_mnow",
+  "gift_details",
   "section_break_myld",
   "gift_images",
-  "section_break_mnow",
-  "gift_additional_attributes",
   "issue_details_tab",
   "owner_details_section",
   "gift_recipient",
@@ -35,7 +31,28 @@
   "column_break_personal",
   "address",
   "issued_date",
-  "person_photo"
+  "person_photo",
+  "item_condition",
+  "health_status",
+  "location_storage_section",
+  "current_location_type",
+  "warehouse",
+  "column_break_location",
+  "storage_location",
+  "storage_date",
+  "location_contact_section",
+  "location_contact_person",
+  "location_contact_number",
+  "column_break_location2",
+  "location_address",
+  "location_history_section",
+  "gift_location_history",
+  "qr_code_section",
+  "qr_code_enabled",
+  "qr_code_value",
+  "column_break_qr",
+  "qr_code_image",
+  "scan_count"
  ],
  "fields": [
   {
@@ -71,18 +88,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "\nAvailable\nIssued"
-  },
-  {
-   "fieldname": "farm_name",
-   "fieldtype": "Data",
-   "label": "Farm Name"
-  },
-  {
-   "fieldname": "weight",
-   "fieldtype": "Float",
-   "label": "Weight",
-   "precision": "2"
+   "options": "\nAvailable\nReceived\nIssued"
   },
   {
    "fieldname": "barcode",
@@ -107,13 +113,8 @@
   },
   {
    "fieldname": "section_break_mnow",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "gift_additional_attributes",
-   "fieldtype": "Table",
-   "label": "Gift Additional Attributes",
-   "options": "Gift Additional Attributes"
+   "fieldtype": "Section Break",
+   "label": "Gift Details"
   },
   {
    "depends_on": "eval:doc.status == \"Issued\"",
@@ -197,22 +198,137 @@
    "label": "Import Barcode"
   },
   {
-   "fieldname": "gender",
+   "depends_on": "eval:doc.category",
+   "fieldname": "item_condition",
    "fieldtype": "Select",
-   "label": "Gender",
-   "options": "\nMale\nFemale"
+   "label": "Item Condition",
+   "options": "New\nExcellent\nGood\nFair\nNeeds Repair\nLiving (Healthy)\nLiving (Sick)\nLiving (Needs Doctor)\nLiving (In Care)\nSent to Zoo\nDeceased"
   },
   {
-   "fieldname": "breed",
+   "depends_on": "eval:doc.item_condition && (doc.item_condition.includes('Living'))",
+   "fieldname": "health_status",
+   "fieldtype": "Select",
+   "label": "Health Status",
+   "options": "Healthy\nNeeds Checkup\nUnder Treatment\nRecovering\nCritical\nQuarantine"
+  },
+  {
+   "fieldname": "location_storage_section",
+   "fieldtype": "Section Break",
+   "label": "Location & Storage"
+  },
+  {
+   "default": "Warehouse",
+   "fieldname": "current_location_type",
+   "fieldtype": "Select",
+   "label": "Current Location Type",
+   "options": "Warehouse\nFarm\nEvent\nIn Transit\nWith Recipient\nMaintenance Center\nOther"
+  },
+  {
+   "depends_on": "eval:doc.current_location_type=='Warehouse'",
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_location",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Specific location within warehouse (e.g., Aisle 5, Cage 12)",
+   "fieldname": "storage_location",
    "fieldtype": "Data",
-   "label": "Breed"
+   "label": "Storage Location/Section"
+  },
+  {
+   "default": "Today",
+   "fieldname": "storage_date",
+   "fieldtype": "Date",
+   "label": "Stored Since"
+  },
+  {
+   "fieldname": "location_contact_section",
+   "fieldtype": "Section Break",
+   "label": "Location Contact Details"
+  },
+  {
+   "fieldname": "location_contact_person",
+   "fieldtype": "Data",
+   "label": "Location Contact Person"
+  },
+  {
+   "fieldname": "location_contact_number",
+   "fieldtype": "Data",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "column_break_location2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "location_address",
+   "fieldtype": "Small Text",
+   "label": "Location Address"
+  },
+  {
+   "fieldname": "location_history_section",
+   "fieldtype": "Section Break",
+   "label": "Location History"
+  },
+  {
+   "fieldname": "gift_location_history",
+   "fieldtype": "Table",
+   "label": "Location Movement History",
+   "options": "Gift Store",
+   "read_only": 1
+  },
+  {
+   "fieldname": "qr_code_section",
+   "fieldtype": "Section Break",
+   "label": "QR Code for Interest Registration"
+  },
+  {
+   "default": "0",
+   "description": "Enable to allow people to scan QR and register interest",
+   "fieldname": "qr_code_enabled",
+   "fieldtype": "Check",
+   "label": "Enable QR Code Interest"
+  },
+  {
+   "fieldname": "qr_code_value",
+   "fieldtype": "Data",
+   "label": "QR Code Value",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qr_code_image",
+   "fieldtype": "Attach Image",
+   "label": "QR Code Image",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "scan_count",
+   "fieldtype": "Int",
+   "label": "Total Scans",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gift_details",
+   "fieldtype": "Table",
+   "label": "Gift Additional Attributes",
+   "options": "Gift Details"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-09-22 22:09:05.914728",
- "modified_by": "nilesh@nesscale.com",
+ "modified": "2026-01-05 16:32:31.214234",
+ "modified_by": "Administrator",
  "module": "Gift",
  "name": "Gift",
  "naming_rule": "Expression (old style)",
@@ -229,10 +345,35 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Event Manager",
+   "share": 1,
+   "write": 1
   }
  ],
  "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

@@ -1,2 +1,0 @@
-import{u as h}from"./index-CKG_yBRf.js";function l(){const{showSuccess:o,showError:s,showWarning:t,showInfo:i,showNotification:n,removeNotification:r,clearAllNotifications:a,notifications:c}=h();return{showToast:(e,f="info",u=5e3)=>n(e,f,u),showSuccess:o,showError:s,showWarning:t,showInfo:i,removeNotification:r,clearAllNotifications:a,notifications:c}}export{l as u};
-//# sourceMappingURL=useToast-Cin3WjbI.js.map
