@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#374151" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Gift Management" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  
+  <!-- SEO and Social Meta -->
+  <meta name="description" content="UAE-friendly Gift Management System - Create, track, and dispatch gifts with QR scanning" />
+  <meta name="keywords" content="gift management, UAE, QR scanner, PWA, mobile app" />
+  <meta name="author" content="Bhavesh" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gift Management System" />
+  <meta property="og:description" content="Streamlined gift management" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/icons/icon-512x512.png" />
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180x180.png" />
+  
+  <!-- Splash Screen for iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <!-- Local fonts -->
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  
+  <title>Gift Management</title>
+</head>
+<body class="bg-off-white text-charcoal-800 font-sans antialiased">
+  <div id="app"></div>
+  
+  <!-- Loading Screen -->
+  <style>
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease-out;
+    }
+    
+    .loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loading-logo {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    
+    .loading-text {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .loading-subtext {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
+    
+    .loading-spinner {
+      width: 24px;
+      height: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-top: 24px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-logo">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="#374151"/>
+        <path d="M12 6L12.5 10.5L17 11L12.5 11.5L12 16L11.5 11.5L7 11L11.5 10.5L12 6Z" fill="#9CA3AF"/>
+      </svg>
+    </div>
+    <div class="loading-text">Gift Management</div>
+    <div class="loading-subtext">Loading your experience...</div>
+    <div class="loading-spinner"></div>
+  </div>
+  
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

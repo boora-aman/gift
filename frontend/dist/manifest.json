@@ -1,0 +1,159 @@
+{
+  "name": "Gift Management System",
+  "short_name": "GiftApp",
+  "description": "UAE-friendly Gift Management System for creating, tracking, and issuing gifts with QR scanning capabilities",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#374151",
+  "background_color": "#F8FAFC",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-mobile-1.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/screenshot-mobile-2.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/screenshot-desktop-1.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create New Gift",
+      "short_name": "New Gift",
+      "description": "Quickly create a new gift",
+      "url": "/gifts/new",
+      "icons": [
+        {
+          "src": "/icons/shortcut-new-gift.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Issue Gift",
+      "short_name": "Issue",
+      "description": "Issue a gift to someone",
+      "url": "/issues/new",
+      "icons": [
+        {
+          "src": "/icons/shortcut-issue.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Scan QR Code",
+      "short_name": "Scan",
+      "description": "Scan a QR code to find gifts",
+      "url": "/scan",
+      "icons": [
+        {
+          "src": "/icons/shortcut-scan.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Home",
+      "description": "View dashboard and statistics",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/icons/shortcut-dashboard.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "protocol_handlers": [
+    {
+      "protocol": "web+giftapp",
+      "url": "/scan?code=%s"
+    }
+  ]
+}

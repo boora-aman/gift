@@ -1,0 +1,75 @@
+{
+  // Auto-detect indentation from existing files
+  "editor.detectIndentation": true,
+  // Disable all auto-formatting to prevent unwanted changes
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  // Disable code actions on save that might change formatting
+  "editor.codeActionsOnSave": {},
+  // Default tab settings (will be overridden by detectIndentation)
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  // Vue specific settings
+  "[vue]": {
+    "editor.detectIndentation": true,
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "Vue.volar",
+    // Preserve multi-line attribute formatting
+    "volar.format.template.initialIndent": false,
+    "volar.format.script.initialIndent": false,
+    "volar.format.style.initialIndent": false
+  },
+  // JavaScript/TypeScript settings
+  "[javascript]": {
+    "editor.detectIndentation": true,
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[typescript]": {
+    "editor.detectIndentation": true,
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  // CSS/SCSS settings
+  "[css]": {
+    "editor.detectIndentation": true,
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[scss]": {
+    "editor.detectIndentation": true,
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  // JSON settings
+  "[json]": {
+    "editor.detectIndentation": true,
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  // Disable Vetur if present (superseded by Volar for Vue 3)
+  "vetur.format.enable": false,
+  "vetur.validation.template": false,
+  "vetur.validation.style": false,
+  "vetur.validation.script": false,
+  // Volar settings for Vue 3
+  "vue.inlayHints.missingProps": false,
+  "vue.inlayHints.inlineHandlerLeading": false,
+  "vue.inlayHints.optionsWrapper": false,
+  // HTML/Template formatting settings
+  "html.format.wrapAttributes": "preserve",
+  "html.format.wrapLineLength": 0,
+  "html.format.preserveNewLines": true,
+  "html.format.maxPreserveNewLines": 2,
+  // Prettier settings (if installed) - disable to prevent conflicts
+  "prettier.enable": false,
+  // ESLint settings - only show errors, don't auto-fix
+  "eslint.format.enable": false,
+  "eslint.codeActionsOnSave.mode": "problems"
+}

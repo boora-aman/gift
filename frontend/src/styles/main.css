@@ -1,0 +1,273 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* CSS Custom Properties for UAE-friendly theme */
+:root {
+  --color-primary: #006C57;
+  --color-primary-hover: #005C4A;
+  --color-secondary: #C8A75C;
+  --color-accent: #EEDBC0;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-border: #E5E7EB;
+  --color-error: #EF4444;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  /* Force light color scheme for form controls and UA styles */
+  color-scheme: light;
+
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+
+  --shadow-soft: 0 2px 8px -2px rgba(0, 0, 0, 0.08), 0 4px 16px -6px rgba(0, 0, 0, 0.08);
+  --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-elevated: 0 4px 16px -4px rgba(0, 0, 0, 0.12), 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+
+  --spacing-touch-min: 44px; /* Minimum touch target */
+  --spacing-safe-area-bottom: env(safe-area-inset-bottom);
+  --spacing-safe-area-top: env(safe-area-inset-top);
+}
+
+/* Dark mode disabled: no alternate variable set */
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  /* Prevent horizontal scrollbars and control viewport */
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: contain;
+  /* Prevent scrollbars and ensure proper sizing */
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Root app container */
+#app {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Scanner specific global styles */
+.scanner-active {
+  overflow: hidden !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.scanner-active body {
+  overflow: hidden !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.scanner-active #app {
+  overflow: hidden !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Safe area handling for mobile devices */
+.safe-area-padding {
+  padding-top: var(--spacing-safe-area-top);
+  padding-bottom: var(--spacing-safe-area-bottom);
+}
+
+/* Custom component classes */
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  min-height: var(--spacing-touch-min);
+}
+
+.btn-primary {
+  @apply bg-emerald-500 text-white hover:bg-emerald-600 focus:ring-emerald-500 active:bg-emerald-700;
+}
+
+.btn-secondary {
+  @apply bg-desert-400 text-charcoal-800 hover:bg-desert-500 focus:ring-desert-400 active:bg-desert-600;
+}
+
+.btn-outline {
+  @apply border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 focus:ring-emerald-500 active:bg-emerald-100;
+}
+
+.btn-ghost {
+  @apply text-charcoal-600 hover:bg-charcoal-100 focus:ring-charcoal-400 active:bg-charcoal-200;
+}
+
+.input {
+  @apply w-full px-4 py-3 text-base border border-charcoal-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200;
+  min-height: var(--spacing-touch-min);
+}
+
+.card {
+  @apply bg-white rounded-xl border border-charcoal-200 shadow-card;
+}
+
+.card-elevated {
+  @apply bg-white rounded-xl shadow-elevated;
+}
+
+.status-badge {
+  @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full;
+}
+
+.status-available {
+  @apply bg-emerald-100 text-emerald-800;
+}
+
+.status-issued {
+  @apply bg-gold-100 text-gold-800;
+}
+
+.status-error {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Mobile-first responsive typography */
+.text-display-1 {
+  @apply text-2xl md:text-3xl lg:text-4xl font-bold font-display;
+}
+
+.text-display-2 {
+  @apply text-xl md:text-2xl lg:text-3xl font-semibold font-display;
+}
+
+.text-heading {
+  @apply text-lg md:text-xl lg:text-2xl font-semibold;
+}
+
+.text-subheading {
+  @apply text-base md:text-lg font-medium;
+}
+
+.text-body {
+  @apply text-sm md:text-base;
+}
+
+.text-caption {
+  @apply text-xs md:text-sm text-charcoal-600;
+}
+
+/* Layout utilities */
+.container-responsive {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  max-width: 1280px; /* Prevent content from spreading too wide on desktop */
+}
+
+.grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+.animate-pulse-soft {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Touch-friendly interaction zones */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: var(--spacing-touch-min);
+    min-width: var(--spacing-touch-min);
+  }
+
+  /* Larger tap targets on mobile */
+  .btn {
+    @apply px-6 py-3 text-base;
+  }
+
+  .input {
+    @apply px-4 py-4 text-base;
+  }
+}
+
+/* Accessibility improvements */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-emerald-500 ring-offset-2;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    @apply border-2 border-emerald-800;
+  }
+
+  .input {
+    @apply border-2 border-charcoal-600;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  * {
+    @apply text-black bg-white;
+  }
+}
